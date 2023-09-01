@@ -1,0 +1,36 @@
+name: Publish release
+on:
+  workflow_dispatch:
+    inputs:
+#      releaseName:
+#        description: 'test'
+#        required: true
+#        default: 'warning'
+#        type: choice
+#        options:
+#        - info
+#        - warning
+#        - debug
+      releasename:
+        description: 'This is just a test'
+        type: text
+        required: true
+      isbeta:
+        description: 'Feels like a beta?'
+        required: true
+        type: boolean
+
+jobs:
+  log-the-inputs:
+    runs-on: [ self-hosted ]
+    steps:
+      - run: |
+          echo "ReleaseName: $RELEASENAME"
+          echo "Tags: $ISBETA"
+        env:
+          #LEVEL: ${{ inputs.releasename }}
+          TAGS: ${{ inputs.isbeta }}
+
+
+
+            
