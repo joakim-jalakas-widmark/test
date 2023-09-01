@@ -1,16 +1,7 @@
-name: Publish release
+name: Create release
 on:
   workflow_dispatch:
     inputs:
-#      releaseName:
-#        description: 'test'
-#        required: true
-#        default: 'warning'
-#        type: choice
-#        options:
-#        - info
-#        - warning
-#        - debug
       releasename:
         description: 'This is just a test'
         type: text
@@ -22,13 +13,16 @@ on:
 
 jobs:
   log-the-inputs:
-    runs-on: [ self-hosted ]
+    #runs-on: [ self-hosted ]
+    #runs-on: [ self-hosted ]
+    runs-on: [ ubuntu-latest ]
+    
     steps:
       - run: |
           echo "ReleaseName: $RELEASENAME"
           echo "Tags: $ISBETA"
         env:
-          #LEVEL: ${{ inputs.releasename }}
+#          LEVEL: ${{ inputs.releasename }}
           TAGS: ${{ inputs.isbeta }}
 
 
