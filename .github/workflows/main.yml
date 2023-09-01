@@ -1,30 +1,33 @@
-name: Create release
 on:
   workflow_dispatch:
     inputs:
-      releasename:
-        description: 'This is just a test'
-        type: text
+      logLevel:
+        description: 'Log level'
         required: true
-      isbeta:
-        description: 'Feels like a beta?'
-        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
         type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 
 jobs:
   log-the-inputs:
-    #runs-on: [ self-hosted ]
-    #runs-on: [ self-hosted ]
-    runs-on: [ ubuntu-latest ]
-    
+    runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "ReleaseName: $RELEASENAME"
-          echo "Tags: $ISBETA"
+          echo "Log level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $ENVIRONMENT"
         env:
-#          LEVEL: ${{ inputs.releasename }}
-          TAGS: ${{ inputs.isbeta }}
-
-
-
-            
+          LEVEL: ${{ inputs.logLevel }}
+          TAGS: ${{ inputs.tags }}
+          ENVIRONMENT: ${{ inputs.environment }}
