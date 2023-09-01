@@ -1,20 +1,24 @@
-name: Leif
+name: Create Release
 on:
   workflow_dispatch:
     inputs:
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
+      release_name:
+        description: 'Enter a release name, will create a tag and a release'
         required: true
         type: string
+      # is_unstable_release:
+      #   description: 'Consider the release unstable?'
+      #   required: false
+      #   type: boolean
+
 
 jobs:
   print-tag:
+#    runs-on: [ self-hosted ]     
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }} 
+
     steps:
-      - name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ inputs.tags }} 
+      - name: Woop
+        run: |
+          echo  The is release is named:  ${{ inputs.release_name }} 
+ 
